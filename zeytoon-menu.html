@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Menu – Zeytoon Kebab | Aurora, ON</title>
+<meta name="description" content="Full menu for Zeytoon Kebab — Persian & Middle Eastern kebabs, stews, sides, drinks and desserts in Aurora, ON.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #fbf5ea;
+    --sand: #f1e6d3;
+    --ink: #241a12;
+    --charcoal: #2c2118;
+    --rust: #b1502f;
+    --rust-dark: #8c3c22;
+    --mustard: #d9a441;
+    --text: #2c2118;
+    --muted: #7d6f5d;
+    --line: rgba(44,33,24,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  .serif { font-family: 'Fraunces', serif; }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo-icon {
+    width: 42px; height: 42px; border-radius: 14px; background: var(--rust);
+    display: flex; align-items: center; justify-content: center; color: var(--paper);
+    transform: rotate(-6deg);
+  }
+  .nav-logo-icon svg { width: 22px; height: 22px; }
+  .nav-logo-text { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; letter-spacing: -0.3px; color: var(--ink); }
+  .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
+  .nav-links a { font-size: 13px; font-weight: 500; text-decoration: none; color: var(--charcoal); position: relative; padding-bottom: 3px; }
+  .nav-links a.active { color: var(--rust); }
+  .nav-links a::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: var(--rust); transition: width 0.3s; }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta { background: var(--ink); color: var(--paper); font-size: 13px; font-weight: 600; padding: 12px 24px; border-radius: 30px; text-decoration: none; transition: background 0.3s, transform 0.2s; }
+  .nav-cta:hover { background: var(--rust); transform: translateY(-2px); }
+
+  /* PAGE HEADER */
+  .menu-header { max-width: 1240px; margin: 0 auto; padding: 90px 48px 50px; text-align: center; }
+  .menu-header .eyebrow {
+    font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--rust);
+    display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 18px;
+  }
+  .menu-header .eyebrow::before, .menu-header .eyebrow::after { content: ''; width: 22px; height: 2px; background: var(--rust); }
+  .menu-header h1 { font-family: 'Fraunces', serif; font-size: clamp(40px, 6vw, 68px); font-weight: 500; letter-spacing: -1px; color: var(--ink); margin-bottom: 18px; }
+  .menu-header h1 em { font-style: italic; color: var(--rust); font-weight: 400; }
+  .menu-header p { font-size: 16px; color: var(--muted); max-width: 520px; margin: 0 auto; }
+  .menu-header .rating-chip {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 24px;
+    background: var(--sand); border: 1px solid var(--line); padding: 10px 20px; border-radius: 30px;
+    font-size: 13px; font-weight: 600; color: var(--charcoal);
+  }
+  .menu-header .rating-chip .stars { color: var(--mustard); }
+
+  /* CATEGORY NAV */
+  .cat-nav {
+    position: sticky; top: 81px; z-index: 90;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+    padding: 18px 48px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  }
+  .cat-nav a {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; padding: 8px 18px; border-radius: 20px; border: 1px solid var(--line);
+    transition: color 0.3s, border-color 0.3s, background 0.3s;
+  }
+  .cat-nav a:hover { color: var(--rust); border-color: var(--rust); background: var(--sand); }
+
+  /* MENU SECTIONS */
+  .menu-category { max-width: 1240px; margin: 0 auto; padding: 90px 48px; }
+  .cat-head { margin-bottom: 48px; }
+  .cat-head .num { font-family: 'Fraunces', serif; font-size: 13px; color: var(--rust); letter-spacing: 2px; margin-bottom: 10px; }
+  .cat-head h2 { font-family: 'Fraunces', serif; font-size: clamp(30px, 3.6vw, 44px); font-weight: 500; color: var(--ink); letter-spacing: -0.5px; }
+  .cat-head p { font-size: 14px; color: var(--muted); margin-top: 10px; }
+
+  .item-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .item-card {
+    background: var(--sand); border-radius: 18px; overflow: hidden;
+    border: 1px solid var(--line); transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .item-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -18px rgba(44,33,24,0.25); }
+  .item-img { height: 190px; overflow: hidden; }
+  .item-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .item-card:hover .item-img img { transform: scale(1.08); }
+  .item-body { padding: 22px 24px 26px; }
+  .item-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+  .item-name { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 500; color: var(--ink); }
+  .item-price { font-size: 14px; font-weight: 700; color: var(--rust); white-space: nowrap; }
+  .item-desc { font-size: 13.5px; line-height: 1.6; color: var(--muted); }
+
+  /* alternating category background */
+  .menu-category:nth-of-type(even) { background: var(--sand); }
+  .menu-category:nth-of-type(even) .item-card { background: var(--paper); }
+
+  /* CTA BAND */
+  .cta-band {
+    background: var(--rust); color: var(--paper);
+    padding: 90px 48px; text-align: center;
+  }
+  .cta-band h2 { font-family: 'Fraunces', serif; font-size: clamp(34px, 4.4vw, 52px); font-weight: 500; margin-bottom: 16px; }
+  .cta-band p { font-size: 15px; color: rgba(251,245,234,0.8); margin-bottom: 40px; }
+  .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .cta-btn { display: flex; align-items: center; gap: 10px; padding: 16px 32px; border-radius: 30px; text-decoration: none; font-size: 13px; font-weight: 600; transition: transform 0.2s, background 0.3s; }
+  .cta-btn-light { background: var(--paper); color: var(--rust); }
+  .cta-btn-light:hover { background: #fff; transform: translateY(-3px); }
+  .cta-btn-dark { background: var(--ink); color: var(--paper); }
+  .cta-btn-dark:hover { background: #1a120c; transform: translateY(-3px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); color: rgba(251,245,234,0.6);
+    padding: 40px 48px; display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-logo { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600; color: var(--paper); }
+  .footer-copy { font-size: 12px; }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 12px; text-decoration: none; color: rgba(251,245,234,0.6); transition: color 0.3s; }
+  .footer-links a:hover { color: var(--mustard); }
+
+  @media (max-width: 980px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .menu-header, .menu-category, .cat-nav { padding-left: 24px; padding-right: 24px; }
+    .item-grid { grid-template-columns: 1fr; }
+    .cat-nav { top: 73px; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="zeytoonKebab.html" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c-4-3-7-6.5-7-10.5A7 7 0 0112 3a7 7 0 017 7.5c0 4-3 7.5-7 10.5z"/><path d="M12 9v8M9 12c0-2 1.5-3 3-3"/></svg>
+    </div>
+    <span class="nav-logo-text">Zeytoon Kebab</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="zeytoonKebab.html">Home</a></li>
+    <li><a href="zeytoon-menu.html" class="active">Full Menu</a></li>
+    <li><a href="zeytoonKebab.html#about">Our Story</a></li>
+    <li><a href="zeytoonKebab.html#reviews">Reviews</a></li>
+    <li><a href="zeytoonKebab.html#contact">Visit Us</a></li>
+  </ul>
+  <a href="zeytoonKebab.html#order" class="nav-cta">Order Now</a>
+</nav>
+
+<!-- HEADER -->
+<div class="menu-header reveal">
+  <div class="eyebrow">The Full Menu</div>
+  <h1>Everything We <em>Grill</em></h1>
+  <p>Hand-seasoned kebabs, slow-cooked stews, and Persian classics — grilled fresh daily on Yonge Street.</p>
+  <div class="rating-chip"><span class="stars">★★★★★</span> 4.9 · 1,400+ Google Reviews</div>
+</div>
+
+<!-- CATEGORY NAV -->
+<div class="cat-nav">
+  <a href="#starters">Starters</a>
+  <a href="#kebabs">Kebabs &amp; Beyti</a>
+  <a href="#stews">Stews</a>
+  <a href="#sides">Sides</a>
+  <a href="#drinks">Drinks</a>
+  <a href="#desserts">Desserts</a>
+</div>
+
+<!-- STARTERS -->
+<div class="menu-category" id="starters">
+  <div class="cat-head reveal">
+    <div class="num">01 — Starters</div>
+    <h2>Begin the Meal</h2>
+    <p>Warm bread, dips, and crispy bites to share.</p>
+  </div>
+  <div class="item-grid">
+    <div class="item-card reveal">
+      <div class="item-img"><img src="https://images.unsplash.com/photo-1529042410759-befb1204b468?w=600&q=80" alt="Mixed appetizer platter"></div>
+      <div class="item-body">
+        <div class="item-top"><span class="item-name">Mixed Appetizer Platter</span><span class="item-price">$16.99</span></div>
+        <p class="item-desc">Hummus and baba ghanoush with warm flatbread — the perfect start to share.</p>
+      </div>
+    </div>
+    <div class="item-card reveal">
+      <div class="item-img"><img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&q=80" alt="Falafel plate"></div>
+      <div class="item-body">
+        <div class="item-top"><span class="item-name">Falafel (5pc)</span><span class="item-price">$8.99</span></div>
+        <p class="item-desc">Crispy chickpea falafel served with tahini sauce and fresh salad.</p>
+      </div>
+    </div>
+    <div class="item-card reveal">
+      <div class="item-img"><img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80" alt="Grilled eggplant dip"></div>
+      <div class="item-body">
+        <div class="item-top"><span class="item-name">Grilled Eggplant Dip</span><span class="item-price">$9.99</span></div>
+        <p class="item-desc">Smoky eggplant dip topped with sautéed onion and served with bread.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KEBABS -->
+<div class="menu-category" id="kebabs">
+  <div class="cat-head reveal">
+    <div class="num">02 — Kebabs &amp; Beyti</div>
+    <h2>Grilled to Order</h2>
+    <p>Fire-grilled kebabs, char-marked and served with saffron rice.</p>
+  </div>
+  <div class="item-grid">
+    <div class="item-card reveal">
+      <div class="item-img"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="Koobideh kebab"></div>
+      <div class="item-body">
+        <div class="item-top"><span class="item-name">Koobideh Kebab</span><span class="item-price">$14.99</span></div>
+        <p class="item-desc">Seasoned ground beef kebab, grilled over open flame with grilled tomato.</p>
+      </div>
+    </div>
+    <div class="item-card reveal">
+      <div class="item-img"><img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&q=80" alt="Joojeh chicken kebab"></div>
+      <div class="item-body">
+        <div class="item-top"><span class="item-name">Joojeh Kebab</span><span class="item-price">$15.99</span></div>
+        <p class="item-desc">Boneless chicken marinated in saffron and lemon, char-grilled.</p>
+      </div>
+    </div>
+    <div class="item-card reveal">
+      <div class="item-img"><img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80" alt="Beef tenderloin skewer"></div>
+      <div class="item-body">
+        <div class="item-top"><span class="item-name">Kabab Barg (Beef)</span><span class="item-price">$18.99</span></div>
+        <p class="item-desc">Thin-sliced beef tenderloin, marinated overnight and grilled tender.</p>
+      </div>
+    </div>
+    <div class="item-card reveal">
+      <div class="item-img"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80" alt="Chicken Beyti plate"></div>
+      <div class="item-body">
+        <div class="item-top"><span class="item-name">Chicken Beyti</span><span class="item-price">$16.99</span></div>
+        <p class="item-desc">Seasoned chicken, grilled and served with fluffy rice — a guest favourite.</p>
+      </div>
+    </div>
+    <div class="item-card reveal">
+      <div class="item-img"><img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=600&q=80" alt="Zeytoon mixed grill platter"></div>
+      <div class="item-body">
+        <div class="item-top"><span class="item-name">Zeytoon Mixed Grill</span><span class="item-price">$21.99</span></div>
+        <p class="item-desc">Our signature combo — koobideh, joojeh and beef skewer on one platter.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEWS -->
+<div class="menu-category" id="stews">
+  <div class="cat-head reveal">
+    <div class="num">03 — Stews</div>
+    <h2>Slow-Cooked Classics</h2>
+    <p>Traditional Persian khoresh, simmered low and slow.</p>
+  </div>
+  <div class="item-grid">
+    <div class="item-card reveal">
+      <div class="item-img"><img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&q=80" alt="Ghormeh sabzi stew"></div>
+      <div class="item-body">
+        <div class="item-top"><span class="item-name">Ghormeh Sabzi</span><span class="item-price">$16.99</span></div>
+        <p class="item-desc">Herb stew with tender beef, kidney beans and dried lime, over rice.</p>
+      </div>
+    </div>
+    <div class="item-card reveal">
+      <div class="item-img"><img src="https://images.unsplash.com/photo-1529042410759-befb1204b468?w=600&q=80" alt="Fesenjan walnut stew"></div>
+      <div class="item-body">
+        <div class="item-top"><span class="item-name">Fesenjan</span><span class="item-price">$17.99</span></div>
+        <p class="item-desc">Walnut and pomegranate stew with chicken, sweet and tangy.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SIDES -->
+<div class="menu-category" id="sides">
+  <div class="cat-head reveal">
+    <div class="num">04 — Sides</div>
+    <h2>Round It Out</h2>
+    <p>Rice and salad to complete your plate.</p>
+  </div>
+  <div class="item-grid">
+    <div class="item-card reveal">
+      <div class="item-img"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80" alt="Saffron tahdig rice"></div>
+      <div class="item-body">
+        <div class="item-top"><span class="item-name">Saffron Tahdig Rice</span><span class="item-price">$5.99</span></div>
+        <p class="item-desc">Crispy golden saffron rice — the Persian favourite, a la carte.</p>
+      </div>
+    </div>
+    <div class="item-card reveal">
+      <div class="item-img"><img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80" alt="Shirazi salad"></div>
+      <div class="item-body">
+        <div class="item-top"><span class="item-name">Shirazi Salad</span><span class="item-price">$6.99</span></div>
+        <p class="item-desc">Diced cucumber, tomato and onion with lime and mint dressing.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DRINKS -->
+<div class="menu-category" id="drinks">
+  <div class="cat-head reveal">
+    <div class="num">05 — Drinks</div>
+    <h2>Something to Sip</h2>
+    <p>Traditional and refreshing pairings.</p>
+  </div>
+  <div class="item-grid">
+    <div class="item-card reveal">
+      <div class="item-img"><img src="https://images.unsplash.com/photo-1600628421066-f6bda6a7b976?w=600&q=80" alt="Doogh yogurt drink"></div>
+      <div class="item-body">
+        <div class="item-top"><span class="item-name">Doogh / Ayran</span><span class="item-price">$2.99</span></div>
+        <p class="item-desc">Traditional homemade yogurt drink with mint — light and refreshing.</p>
+      </div>
+    </div>
+    <div class="item-card reveal">
+      <div class="item-img"><img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?w=600&q=80" alt="Persian tea"></div>
+      <div class="item-body">
+        <div class="item-top"><span class="item-name">Persian Tea</span><span class="item-price">$2.99</span></div>
+        <p class="item-desc">Freshly brewed black tea, served the traditional way.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DESSERTS -->
+<div class="menu-category" id="desserts">
+  <div class="cat-head reveal">
+    <div class="num">06 — Desserts</div>
+    <h2>Sweet Finish</h2>
+    <p>Because every great meal deserves one.</p>
+  </div>
+  <div class="item-grid">
+    <div class="item-card reveal">
+      <div class="item-img"><img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?w=600&q=80" alt="Baklava dessert"></div>
+      <div class="item-body">
+        <div class="item-top"><span class="item-name">Baklava</span><span class="item-price">$4.99</span></div>
+        <p class="item-desc">Layers of flaky filo, pistachio and syrup — crispy and sweet.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-band">
+  <h2>Craving Something?</h2>
+  <p>Order pickup or delivery — fresh off the grill.</p>
+  <div class="cta-btns">
+    <a href="tel:+19057136090" class="cta-btn cta-btn-light">Call (905) 713-6090</a>
+    <a href="https://www.ubereats.com/ca/search?q=Zeytoon%20Kebab" target="_blank" class="cta-btn cta-btn-dark">Order on Uber Eats</a>
+    <a href="https://www.doordash.com/search/store/zeytoon-kebab/" target="_blank" class="cta-btn cta-btn-dark">Order on DoorDash</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Zeytoon Kebab · Aurora</div>
+  <div class="footer-copy">© 2026 Zeytoon Kebab. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="zeytoonKebab.html">Home</a>
+    <a href="tel:+19057136090">Call</a>
+    <a href="https://www.ubereats.com/ca/search?q=Zeytoon%20Kebab" target="_blank">Uber Eats</a>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

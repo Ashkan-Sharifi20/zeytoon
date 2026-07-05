@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zeytoon Kebab – Persian Grill | Aurora, ON</title>
+<meta name="description" content="Zeytoon Kebab — fire-grilled Persian & Middle Eastern cuisine in Aurora, ON. 4.9★ · 1,400+ Google reviews. Open late. Order pickup or delivery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #fbf5ea;
+    --sand: #f1e6d3;
+    --ink: #241a12;
+    --charcoal: #2c2118;
+    --rust: #b1502f;
+    --rust-dark: #8c3c22;
+    --mustard: #d9a441;
+    --text: #2c2118;
+    --muted: #7d6f5d;
+    --line: rgba(44,33,24,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+
+  .serif { font-family: 'Fraunces', serif; }
+
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 48px; }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0; z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo-icon {
+    width: 42px; height: 42px; border-radius: 14px;
+    background: var(--rust);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--paper);
+    transform: rotate(-6deg);
+  }
+  .nav-logo-icon svg { width: 22px; height: 22px; }
+  .nav-logo-text { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; letter-spacing: -0.3px; color: var(--ink); }
+
+  .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
+  .nav-links a {
+    font-size: 13px; font-weight: 500; letter-spacing: 0.2px;
+    text-decoration: none; color: var(--charcoal);
+    position: relative; padding-bottom: 3px;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 2px;
+    background: var(--rust); transition: width 0.3s;
+  }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--ink); color: var(--paper);
+    font-size: 13px; font-weight: 600;
+    padding: 12px 24px; border-radius: 30px;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .nav-cta:hover { background: var(--rust); transform: translateY(-2px); }
+
+  /* HERO */
+  .hero-section { padding: 72px 48px 0; max-width: 1240px; margin: 0 auto; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px; align-items: center; }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--rust); margin-bottom: 22px;
+  }
+  .hero-eyebrow::before { content: ''; width: 22px; height: 2px; background: var(--rust); }
+
+  .hero-copy h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(44px, 5.4vw, 74px);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: -1px;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .hero-copy h1 em { font-style: italic; color: var(--rust); font-weight: 400; }
+
+  .hero-copy p.lead {
+    font-size: 17px; line-height: 1.7; color: var(--muted);
+    max-width: 460px; margin-bottom: 36px;
+  }
+
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 44px; }
+  .btn-primary, .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.2px;
+    padding: 15px 28px; border-radius: 30px; text-decoration: none;
+    transition: transform 0.2s, background 0.3s, color 0.3s;
+  }
+  .btn-primary { background: var(--rust); color: var(--paper); }
+  .btn-primary:hover { background: var(--rust-dark); transform: translateY(-2px); }
+  .btn-secondary { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+  .btn-secondary:hover { border-color: var(--ink); transform: translateY(-2px); }
+
+  .hero-mini-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+  .mini-stat-num { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600; color: var(--ink); line-height: 1; }
+  .mini-stat-label { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+
+  .hero-media { position: relative; }
+  .hero-media-frame {
+    border-radius: 28px 28px 28px 4px;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    box-shadow: 0 30px 60px -20px rgba(44,33,24,0.35);
+  }
+  .hero-media-frame img {
+    width: 100%; height: 100%; object-fit: cover;
+    animation: kenburns 22s ease-in-out infinite alternate;
+  }
+  @keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.08); } }
+
+  .hero-badge {
+    position: absolute;
+    bottom: -28px; left: -28px;
+    background: var(--ink); color: var(--paper);
+    padding: 20px 24px; border-radius: 18px;
+    display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 18px 40px -12px rgba(0,0,0,0.4);
+  }
+  .hero-badge-stars { color: var(--mustard); font-size: 15px; letter-spacing: 2px; }
+  .hero-badge-num { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 600; }
+  .hero-badge-text { font-size: 11px; color: rgba(251,245,234,0.65); letter-spacing: 0.5px; margin-top: 2px; }
+
+  /* STATS STRIP */
+  .stats-strip {
+    margin: 110px auto 0; max-width: 1240px; padding: 0 48px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--line);
+    border-radius: 20px; overflow: hidden;
+  }
+  .stat-cell {
+    background: var(--sand); padding: 30px 28px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .stat-cell-icon { color: var(--rust); width: 24px; height: 24px; margin-bottom: 8px; }
+  .stat-cell-num { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: var(--ink); }
+  .stat-cell-label { font-size: 12px; color: var(--muted); letter-spacing: 0.3px; }
+
+  /* SECTION SHARED */
+  .section-pad { padding: 130px 48px; max-width: 1240px; margin: 0 auto; }
+  .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 56px; }
+  .section-eyebrow {
+    font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--rust);
+    display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+  }
+  .section-eyebrow::before { content: ''; width: 22px; height: 2px; background: var(--rust); }
+  .section-title { font-family: 'Fraunces', serif; font-size: clamp(34px, 4vw, 50px); font-weight: 500; line-height: 1.08; letter-spacing: -0.5px; color: var(--ink); }
+  .section-title em { font-style: italic; color: var(--rust); font-weight: 400; }
+
+  /* FAMOUS FOODS */
+  .foods-section { background: var(--ink); padding: 130px 0; }
+  .foods-section .wrap { max-width: 1240px; }
+  .foods-section .section-eyebrow { color: var(--mustard); }
+  .foods-section .section-eyebrow::before { background: var(--mustard); }
+  .foods-section .section-title { color: var(--paper); }
+
+  .foods-scroll {
+    display: flex; gap: 24px; overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 12px;
+    scrollbar-width: none;
+  }
+  .foods-scroll::-webkit-scrollbar { display: none; }
+
+  .food-card {
+    scroll-snap-align: start;
+    flex: 0 0 300px;
+    background: #362a1e;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.4s ease;
+  }
+  .food-card:hover { transform: translateY(-8px); }
+
+  .food-card-img { height: 220px; overflow: hidden; }
+  .food-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .food-card:hover .food-card-img img { transform: scale(1.1); }
+
+  .food-card-body { padding: 22px 24px 26px; }
+  .food-card-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; gap: 12px; }
+  .food-name { font-family: 'Fraunces', serif; font-size: 21px; font-weight: 500; color: var(--paper); }
+  .food-price { font-size: 13px; font-weight: 600; color: var(--mustard); white-space: nowrap; }
+  .food-desc { font-size: 13px; line-height: 1.6; color: rgba(251,245,234,0.55); }
+
+  .foods-controls { display: flex; gap: 12px; margin-top: 40px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  .foods-arrows { display: flex; gap: 10px; }
+  .arrow-btn {
+    width: 46px; height: 46px; border-radius: 50%;
+    border: 1px solid rgba(251,245,234,0.25);
+    background: transparent; color: var(--paper);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .arrow-btn:hover { background: var(--rust); border-color: var(--rust); }
+  .arrow-btn svg { width: 18px; height: 18px; }
+
+  .menu-page-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 600; color: var(--paper);
+    text-decoration: none; border-bottom: 1.5px solid var(--mustard); padding-bottom: 4px;
+  }
+  .menu-page-link:hover { color: var(--mustard); }
+
+  /* STORY */
+  .story-section { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 72px; align-items: center; }
+  .story-mosaic { position: relative; height: 460px; }
+  .story-mosaic img { position: absolute; object-fit: cover; border-radius: 18px; box-shadow: 0 24px 50px -20px rgba(44,33,24,0.3); }
+  .story-mosaic .img-a { width: 66%; height: 78%; top: 0; left: 0; z-index: 2; }
+  .story-mosaic .img-b { width: 52%; height: 52%; bottom: 0; right: 0; z-index: 1; border: 6px solid var(--paper); }
+
+  .story-text p { font-size: 16px; line-height: 1.85; color: var(--muted); margin-bottom: 22px; }
+  .story-quote {
+    font-family: 'Fraunces', serif; font-size: 24px; font-style: italic; font-weight: 400;
+    color: var(--ink); line-height: 1.5;
+    border-left: 3px solid var(--rust); padding-left: 26px;
+    margin: 34px 0;
+  }
+  .story-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+  .story-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--sand); border: 1px solid var(--line);
+    padding: 9px 16px; border-radius: 30px;
+    font-size: 12px; font-weight: 600; color: var(--charcoal);
+  }
+  .story-badge svg { width: 14px; height: 14px; color: var(--rust); }
+
+  /* REVIEWS MARQUEE */
+  .reviews-section { background: var(--sand); padding: 130px 0; overflow: hidden; }
+  .reviews-head { max-width: 1240px; margin: 0 auto 56px; padding: 0 48px; text-align: center; }
+  .reviews-rating-row {
+    display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 18px;
+  }
+  .reviews-rating-num { font-family: 'Fraunces', serif; font-size: 44px; font-weight: 600; color: var(--ink); }
+  .reviews-stars { color: var(--mustard); font-size: 20px; letter-spacing: 3px; }
+  .reviews-count { font-size: 14px; color: var(--muted); }
+  .reviews-head .section-title { text-align: center; }
+  .reviews-head .section-eyebrow { justify-content: center; }
+
+  .marquee { position: relative; }
+  .marquee-track {
+    display: flex; gap: 24px; width: max-content;
+    animation: scrollLeft 55s linear infinite;
+  }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  @keyframes scrollLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  .review-card {
+    background: var(--paper);
+    width: 380px; flex: 0 0 380px;
+    padding: 32px; border-radius: 18px;
+    border: 1px solid var(--line);
+  }
+  .review-stars { color: var(--mustard); font-size: 14px; letter-spacing: 2px; margin-bottom: 18px; }
+  .review-text { font-size: 15.5px; line-height: 1.75; color: var(--text); margin-bottom: 22px; }
+  .review-foot { display: flex; align-items: center; gap: 12px; }
+  .review-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--rust); color: var(--paper);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 15px;
+  }
+  .review-author { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .review-source { font-size: 11px; color: var(--muted); }
+
+  /* ORDER CTA */
+  .order-section {
+    background: var(--rust); color: var(--paper);
+    padding: 100px 48px; text-align: center;
+  }
+  .order-section .section-eyebrow { color: rgba(251,245,234,0.75); justify-content: center; }
+  .order-section .section-eyebrow::before { background: rgba(251,245,234,0.5); }
+  .order-section h2 { font-family: 'Fraunces', serif; font-size: clamp(38px, 4.6vw, 58px); font-weight: 500; margin-bottom: 16px; }
+  .order-section p { font-size: 15px; color: rgba(251,245,234,0.8); margin-bottom: 44px; }
+  .order-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .order-btn {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--ink); color: var(--paper);
+    padding: 17px 34px; border-radius: 30px; text-decoration: none;
+    font-size: 13px; font-weight: 600;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .order-btn:hover { background: #1a120c; transform: translateY(-3px); }
+  .order-btn-light { background: var(--paper); color: var(--rust); }
+  .order-btn-light:hover { background: #fff; }
+
+  /* CONTACT */
+  .contact-section { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .contact-map { min-height: 480px; background: var(--sand); }
+  .contact-map iframe { width: 100%; height: 100%; min-height: 480px; border: 0; display: block; }
+  .contact-info { padding: 90px 64px; background: var(--paper); }
+  .contact-details { margin-top: 36px; display: flex; flex-direction: column; gap: 26px; }
+  .contact-item { display: flex; gap: 16px; align-items: flex-start; }
+  .contact-icon { width: 20px; height: 20px; color: var(--rust); flex-shrink: 0; margin-top: 3px; }
+  .contact-label { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--rust); margin-bottom: 5px; font-weight: 600; }
+  .contact-value { font-size: 16px; color: var(--charcoal); line-height: 1.55; }
+  .contact-value a { text-decoration: none; border-bottom: 1px solid var(--line); }
+  .contact-value a:hover { color: var(--rust); border-color: var(--rust); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); color: rgba(251,245,234,0.6);
+    padding: 40px 48px; display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-logo { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600; color: var(--paper); }
+  .footer-copy { font-size: 12px; }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 12px; text-decoration: none; color: rgba(251,245,234,0.6); transition: color 0.3s; }
+  .footer-links a:hover { color: var(--mustard); }
+
+  @media (max-width: 980px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .wrap, .hero-section, .section-pad { padding-left: 24px; padding-right: 24px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+    .hero-media { order: -1; }
+    .stats-strip { grid-template-columns: repeat(2, 1fr); padding: 0 24px; margin-top: 64px; }
+    .story-section { grid-template-columns: 1fr; gap: 48px; }
+    .story-mosaic { height: 340px; }
+    .contact-section { grid-template-columns: 1fr; }
+    .contact-info { padding: 60px 32px; }
+    footer { flex-direction: column; text-align: center; }
+    .section-pad { padding: 80px 24px; }
+    .foods-section { padding: 80px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c-4-3-7-6.5-7-10.5A7 7 0 0112 3a7 7 0 017 7.5c0 4-3 7.5-7 10.5z"/><path d="M12 9v8M9 12c0-2 1.5-3 3-3"/></svg>
+    </div>
+    <span class="nav-logo-text">Zeytoon Kebab</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="zeytoon-menu.html">Full Menu</a></li>
+    <li><a href="#foods">Famous Foods</a></li>
+    <li><a href="#about">Our Story</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Visit Us</a></li>
+  </ul>
+  <a href="#order" class="nav-cta">Order Now</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero-section">
+  <div class="hero-grid">
+    <div class="hero-copy reveal">
+      <div class="hero-eyebrow">Persian Grill · Aurora, Ontario</div>
+      <h1>Fire-grilled<br><em>Persian</em> flavour,<br>made fresh daily.</h1>
+      <p class="lead">Zeytoon Kebab brings hand-seasoned kebabs, saffron rice and Persian classics to Yonge Street — grilled the traditional way, open late for whenever the craving hits.</p>
+      <div class="hero-btns">
+        <a href="#order" class="btn-primary">Order Pickup / Delivery</a>
+        <a href="zeytoon-menu.html" class="btn-secondary">See Full Menu</a>
+      </div>
+      <div class="hero-mini-stats">
+        <div><div class="mini-stat-num">4.9★</div><div class="mini-stat-label">Google Rating</div></div>
+        <div><div class="mini-stat-num">1,400+</div><div class="mini-stat-label">Reviews</div></div>
+        <div><div class="mini-stat-num">2AM</div><div class="mini-stat-label">Open Until</div></div>
+      </div>
+    </div>
+    <div class="hero-media reveal">
+      <div class="hero-media-frame">
+        <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=900&q=80" alt="Zeytoon Kebab grilled platter" onerror="this.src='https://images.unsplash.com/photo-1529042410759-befb1204b468?w=900&q=80'">
+      </div>
+      <div class="hero-badge">
+        <div>
+          <div class="hero-badge-stars">★★★★★</div>
+          <div class="hero-badge-num">4.9</div>
+        </div>
+        <div class="hero-badge-text">Based on<br>1,400+ Google<br>reviews</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS STRIP -->
+<div class="stats-strip reveal">
+  <div class="stat-cell">
+    <svg class="stat-cell-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    <div class="stat-cell-num">Open Daily</div>
+    <div class="stat-cell-label">Closes 2:00 AM</div>
+  </div>
+  <div class="stat-cell">
+    <svg class="stat-cell-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+    <div class="stat-cell-num">Yonge St</div>
+    <div class="stat-cell-label">Aurora, ON</div>
+  </div>
+  <div class="stat-cell">
+    <svg class="stat-cell-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.5 0-4 1-4 4.5S9 17 12 17s4-2 4-4.5S13.5 8 12 8z"/></svg>
+    <div class="stat-cell-num">$10–20</div>
+    <div class="stat-cell-label">Casual Dining</div>
+  </div>
+  <div class="stat-cell">
+    <svg class="stat-cell-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    <div class="stat-cell-num">Halal</div>
+    <div class="stat-cell-label">Options Available</div>
+  </div>
+</div>
+
+<!-- FAMOUS FOODS -->
+<div class="foods-section" id="foods">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="section-eyebrow">Fan Favourites</div>
+        <h2 class="section-title">Our Most <em>Famous</em> Foods</h2>
+      </div>
+    </div>
+    <div class="foods-scroll" id="foodsScroll">
+      <div class="food-card">
+        <div class="food-card-img"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="Koobideh kebab"></div>
+        <div class="food-card-body">
+          <div class="food-card-top"><span class="food-name">Koobideh</span><span class="food-price">$14.99</span></div>
+          <p class="food-desc">Seasoned ground beef kebab, grilled over open flame with saffron rice.</p>
+        </div>
+      </div>
+      <div class="food-card">
+        <div class="food-card-img"><img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&q=80" alt="Chicken Beyti plate"></div>
+        <div class="food-card-body">
+          <div class="food-card-top"><span class="food-name">Chicken Beyti</span><span class="food-price">$16.99</span></div>
+          <p class="food-desc">Tender marinated chicken, grilled and served with flavourful, fluffy rice.</p>
+        </div>
+      </div>
+      <div class="food-card">
+        <div class="food-card-img"><img src="https://images.unsplash.com/photo-1529042410759-befb1204b468?w=600&q=80" alt="Mixed appetizer platter"></div>
+        <div class="food-card-body">
+          <div class="food-card-top"><span class="food-name">Appetizer Platter</span><span class="food-price">$16.99</span></div>
+          <p class="food-desc">Hummus and dips with warm flatbread — a guest favourite starter.</p>
+        </div>
+      </div>
+      <div class="food-card">
+        <div class="food-card-img"><img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80" alt="Beef skewer"></div>
+        <div class="food-card-body">
+          <div class="food-card-top"><span class="food-name">Beef Skewer</span><span class="food-price">$18.99</span></div>
+          <p class="food-desc">Marinated tenderloin, char-grilled for a smoky, juicy finish.</p>
+        </div>
+      </div>
+      <div class="food-card">
+        <div class="food-card-img"><img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&q=80" alt="Falafel plate"></div>
+        <div class="food-card-body">
+          <div class="food-card-top"><span class="food-name">Falafel Plate</span><span class="food-price">$8.99</span></div>
+          <p class="food-desc">Crispy chickpea falafel served with tahini and fresh salad.</p>
+        </div>
+      </div>
+      <div class="food-card">
+        <div class="food-card-img"><img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?w=600&q=80" alt="Baklava dessert"></div>
+        <div class="food-card-body">
+          <div class="food-card-top"><span class="food-name">Baklava</span><span class="food-price">$4.99</span></div>
+          <p class="food-desc">Crispy, sweet, and layered — the perfect finish to any meal.</p>
+        </div>
+      </div>
+    </div>
+    <div class="foods-controls reveal">
+      <a href="zeytoon-menu.html" class="menu-page-link">
+        View Full Menu
+        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+      <div class="foods-arrows">
+        <button class="arrow-btn" onclick="document.getElementById('foodsScroll').scrollBy({left:-320,behavior:'smooth'})" aria-label="Scroll left">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button class="arrow-btn" onclick="document.getElementById('foodsScroll').scrollBy({left:320,behavior:'smooth'})" aria-label="Scroll right">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY -->
+<div class="section-pad story-section" id="about">
+  <div class="story-mosaic reveal">
+    <img class="img-a" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=700&q=80" alt="Saffron rice">
+    <img class="img-b" src="https://images.unsplash.com/photo-1600628421066-f6bda6a7b976?w=500&q=80" alt="Doogh yogurt drink">
+  </div>
+  <div class="story-text reveal">
+    <div class="section-eyebrow">Our Story</div>
+    <h2 class="section-title" style="margin-bottom:22px;">Persian Flavour,<br><em>Aurora</em> Nights</h2>
+    <p>Zeytoon means "olive" in Persian — a symbol of warmth and generosity we bring to every table on Yonge Street. Guests consistently point to the same things: portions are generous, the owners are welcoming, and the space is always spotless.</p>
+    <p class="story-quote">"Tender, juicy chicken and flavourful, fluffy rice — nothing overly salted or too rich. We'll definitely be back."</p>
+    <p>From our appetizer platter with warm flatbread to our late-night menu for guests craving something after hours, Zeytoon Kebab is Aurora's home for honest, fire-grilled cooking.</p>
+    <div class="story-badges">
+      <div class="story-badge"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Fresh Daily</div>
+      <div class="story-badge"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Halal Options</div>
+      <div class="story-badge"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Open Till 2AM</div>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<div class="reviews-section" id="reviews">
+  <div class="reviews-head reveal">
+    <div class="section-eyebrow">What Guests Say</div>
+    <h2 class="section-title" style="margin-bottom:22px;">Loved by <em>Aurora</em></h2>
+    <div class="reviews-rating-row">
+      <span class="reviews-rating-num">4.9</span>
+      <div>
+        <div class="reviews-stars">★★★★★</div>
+        <div class="reviews-count">1,400+ Google Reviews</div>
+      </div>
+    </div>
+  </div>
+  <div class="marquee reveal">
+    <div class="marquee-track" id="marqueeTrack">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Great service, friendly and welcoming owners, and the food was delicious with very generous portions. Will definitely be back."</p>
+        <div class="review-foot"><div class="review-avatar">A</div><div><div class="review-author">Verified Guest</div><div class="review-source">Google Review</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The Chicken Beyti plate was tender and juicy, and the rice was flavourful and fluffy. One of the best meals we've had in Aurora."</p>
+        <div class="review-foot"><div class="review-avatar">M</div><div><div class="review-author">Verified Guest</div><div class="review-source">Google Review</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Ordered a variety of dishes — grilled chicken, falafel, eggplant and beef skewer. Nothing was overly salted or too rich. We'll be ordering again."</p>
+        <div class="review-foot"><div class="review-avatar">L</div><div><div class="review-author">Verified Guest</div><div class="review-source">Google Review</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The appetizer platter with dips and warm bread is the perfect way to start. Baklava is the perfect blend of crispy and sweet."</p>
+        <div class="review-foot"><div class="review-avatar">S</div><div><div class="review-author">Verified Guest</div><div class="review-source">Google Review</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Chicken had a moist texture with a nice smoky flavor and char — the rice was subtly flavored and never dry. Very clean, well-managed spot."</p>
+        <div class="review-foot"><div class="review-avatar">R</div><div><div class="review-author">Verified Guest</div><div class="review-source">Google Review</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Love that they're open so late — great spot to grab real Persian food after a night out. Staff are always friendly."</p>
+        <div class="review-foot"><div class="review-avatar">K</div><div><div class="review-author">Verified Guest</div><div class="review-source">Google Review</div></div></div>
+      </div>
+      <!-- duplicate set for seamless loop -->
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Great service, friendly and welcoming owners, and the food was delicious with very generous portions. Will definitely be back."</p>
+        <div class="review-foot"><div class="review-avatar">A</div><div><div class="review-author">Verified Guest</div><div class="review-source">Google Review</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The Chicken Beyti plate was tender and juicy, and the rice was flavourful and fluffy. One of the best meals we've had in Aurora."</p>
+        <div class="review-foot"><div class="review-avatar">M</div><div><div class="review-author">Verified Guest</div><div class="review-source">Google Review</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Ordered a variety of dishes — grilled chicken, falafel, eggplant and beef skewer. Nothing was overly salted or too rich. We'll be ordering again."</p>
+        <div class="review-foot"><div class="review-avatar">L</div><div><div class="review-author">Verified Guest</div><div class="review-source">Google Review</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The appetizer platter with dips and warm bread is the perfect way to start. Baklava is the perfect blend of crispy and sweet."</p>
+        <div class="review-foot"><div class="review-avatar">S</div><div><div class="review-author">Verified Guest</div><div class="review-source">Google Review</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Chicken had a moist texture with a nice smoky flavor and char — the rice was subtly flavored and never dry. Very clean, well-managed spot."</p>
+        <div class="review-foot"><div class="review-avatar">R</div><div><div class="review-author">Verified Guest</div><div class="review-source">Google Review</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Love that they're open so late — great spot to grab real Persian food after a night out. Staff are always friendly."</p>
+        <div class="review-foot"><div class="review-avatar">K</div><div><div class="review-author">Verified Guest</div><div class="review-source">Google Review</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER -->
+<div class="order-section" id="order">
+  <div class="section-eyebrow reveal" style="justify-content:center">Order Online</div>
+  <h2 class="reveal">Ready to Order?</h2>
+  <p class="reveal">Pickup or delivery — fresh off the grill, straight to you.</p>
+  <div class="order-btns reveal">
+    <a href="tel:+19057136090" class="order-btn order-btn-light">
+      <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+      Call for Pickup
+    </a>
+    <a href="https://www.ubereats.com/ca/search?q=Zeytoon%20Kebab" target="_blank" class="order-btn">
+      <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+      Order on Uber Eats
+    </a>
+    <a href="https://www.doordash.com/search/store/zeytoon-kebab/" target="_blank" class="order-btn">
+      <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+      Order on DoorDash
+    </a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="contact-map">
+    <iframe src="https://www.google.com/maps?q=14834+Yonge+St+%239,+Aurora,+ON+L4G+7Y4&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+  <div class="contact-info reveal">
+    <div class="section-eyebrow">Find Us</div>
+    <h2 class="section-title">Visit<br>Zeytoon Kebab</h2>
+    <div class="contact-details">
+      <div class="contact-item">
+        <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        <div>
+          <div class="contact-label">Address</div>
+          <div class="contact-value"><a href="https://www.google.com/maps/search/?api=1&query=14834+Yonge+St+%239,+Aurora,+ON+L4G+7Y4" target="_blank">14834 Yonge St #9<br>Aurora, ON L4G 7Y4</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value"><a href="tel:+19057136090">(905) 713-6090</a></div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div>
+          <div class="contact-label">Hours</div>
+          <div class="contact-value">Open Daily<br>Closes 2:00 AM</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+        <div>
+          <div class="contact-label">Rating</div>
+          <div class="contact-value">4.9 ★ · 1,400+ Google Reviews</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Zeytoon Kebab · Aurora</div>
+  <div class="footer-copy">© 2026 Zeytoon Kebab. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="zeytoon-menu.html">Full Menu</a>
+    <a href="tel:+19057136090">Call</a>
+    <a href="https://www.ubereats.com/ca/search?q=Zeytoon%20Kebab" target="_blank">Uber Eats</a>
+    <a href="https://www.doordash.com/search/store/zeytoon-kebab/" target="_blank">DoorDash</a>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
